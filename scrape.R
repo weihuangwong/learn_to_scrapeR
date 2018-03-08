@@ -1,6 +1,6 @@
 library(rvest)
 library(lubridate)
-# library(dplyr)
+library(dplyr)
 library(purrr)
 
 ## ----------------------------------------------------------------------------
