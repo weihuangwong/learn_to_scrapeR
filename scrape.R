@@ -3,8 +3,6 @@ library(lubridate)
 library(dplyr)
 library(purrr)
 
-url <- "https://reliefweb.int/report/afghanistan/more-200-displaced-families-receive-cash-assistance-laghman-province"
-
 ## ----------------------------------------------------------------------------
 ## Page scraper
 ## ----------------------------------------------------------------------------
