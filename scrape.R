@@ -50,8 +50,12 @@ page_to_link <- function(page_num) {
 ## Get links and content
 ## ----------------------------------------------------------------------------
 
-all_links <- unlist(map(1:5, page_to_link))
+# Test our functions
+page_scraper("https://reliefweb.int/report/iraq/reconstruction-needed-displaced-iraqis-continue-return-iom-iraq")
+page_to_link(1)
 
+# Simulate a long-running job
+all_links <- unlist(map(1:5, page_to_link))
 all_content <- map(all_links[10:20], function(link) {
   tryCatch({
     Sys.sleep(3)
