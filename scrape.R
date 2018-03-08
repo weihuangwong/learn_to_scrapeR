@@ -1,6 +1,6 @@
 library(rvest)
 library(lubridate)
-library(dplyr)
+# library(dplyr)
 library(purrr)
 
 ## ----------------------------------------------------------------------------
@@ -58,7 +58,7 @@ page_to_link(1)
 all_links <- unlist(map(1:5, page_to_link))
 all_content <- map(all_links[10:20], function(link) {
   tryCatch({
-    Sys.sleep(3)
+    Sys.sleep(10)
     cat(sprintf("Scraping %s...\n", link))
     page_scraper(link)
   },
