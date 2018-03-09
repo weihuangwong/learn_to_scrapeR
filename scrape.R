@@ -1,7 +1,6 @@
-install.packages(c("rvest", "lubridate"))
+install.packages("rvest")
 
 library(rvest)
-library(lubridate)
 
 ## ----------------------------------------------------------------------------
 ## Page scraper
@@ -24,8 +23,7 @@ page_scraper <- function(url) {
     trimws()
   dt <- content %>%
     html_node("span.date-display-single") %>%
-    html_text() %>%
-    dmy()
+    html_text() 
   data.frame(author = author, date = dt, title = title, body = body)
 }
 
