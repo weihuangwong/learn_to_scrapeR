@@ -1,3 +1,5 @@
+install.packages(c("rvest", "lubridate", "dplyr", "purrr"))
+
 library(rvest)
 library(lubridate)
 library(dplyr)
