@@ -1,9 +1,7 @@
-install.packages(c("rvest", "lubridate", "dplyr", "purrr"))
+install.packages(c("rvest", "lubridate"))
 
 library(rvest)
 library(lubridate)
-library(dplyr)
-library(purrr)
 
 ## ----------------------------------------------------------------------------
 ## Page scraper
@@ -28,7 +26,7 @@ page_scraper <- function(url) {
     html_node("span.date-display-single") %>%
     html_text() %>%
     dmy()
-  data_frame(author = author, date = dt, title = title, body = body)
+  data.frame(author = author, date = dt, title = title, body = body)
 }
 
 ## ----------------------------------------------------------------------------
@@ -57,10 +55,10 @@ page_scraper("https://reliefweb.int/report/iraq/reconstruction-needed-displaced-
 page_to_link(1)
 
 # Simulate a long-running job
-all_links <- unlist(map(1:5, page_to_link))
-all_content <- map(all_links[10:20], function(link) {
+all_links <- unlist(sapply(1:5, page_to_link))
+all_content <- lapply(all_links[1:20], function(link) {
   tryCatch({
-    Sys.sleep(10)
+    Sys.sleep(3)
     cat(sprintf("Scraping %s...\n", link))
     page_scraper(link)
   },
@@ -71,6 +69,6 @@ all_content <- map(all_links[10:20], function(link) {
 })
 
 # Make it a dataframe
-all_content <- bind_rows(all_content)
+all_content <- do.call(rbind, all_content)
 
 write.csv(all_content, file = "all_content.csv", row.names = FALSE)
